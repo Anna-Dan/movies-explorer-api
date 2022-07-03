@@ -1,7 +1,4 @@
-const allowedCors = [
-  'http://mesto.annadan.nomoredomains.xyz',
-  'https://mesto.annadan.nomoredomains.xyz',
-];
+const allowedCors = ['http://localhost:3000'];
 
 const cors = (req, res, next) => {
   const { origin } = req.headers;

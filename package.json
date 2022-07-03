@@ -1,7 +1,7 @@
 {
-  "name": "express-mesto-gha",
+  "name": "movies-explorer",
   "version": "1.0.0",
-  "description": "[![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml) [![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml) # Проект Mesto фронтенд + бэкенд",
+  "description": "# Дипломный проект movies-explorer бэкенд",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -11,21 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Anna-Dan/express-mesto-gha.git"
+    "url": "git+https://github.com/Anna-Dan/movies-explorer-api.git"
   },
   "keywords": [],
   "author": "Anna Danilenko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Anna-Dan/express-mesto-gha/issues"
+    "url": "https://github.com/Anna-Dan/movies-explorer-api/issues"
   },
-  "homepage": "https://github.com/Anna-Dan/express-mesto-gha#readme",
+  "homepage": "https://github.com/Anna-Dan/movies-explorer-api#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "celebrate": "^15.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-rate-limit": "^6.4.0",
     "express-winston": "^4.2.0",
     "helmet": "^5.1.0",
     "jsonwebtoken": "^8.5.1",

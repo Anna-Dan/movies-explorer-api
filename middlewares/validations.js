@@ -1,51 +1,62 @@
 const { celebrate, Joi } = require('celebrate');
+const isURL = require('validator/lib/isURL');
+const { WRONG_URL_FORMAT } = require('../utils/constants');
+
+const validationUrl = (value) => {
+  if (!isURL(value)) {
+    throw new Error(WRONG_URL_FORMAT);
+  }
+
+  return value;
+};
 
 const signInValidation = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().min(6),
   }),
 });
 
 const signUpValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
-    avatar: Joi.string().pattern(/(https|http):\/\/(www.)?[a-zA-Z0-9-_]+\.[a-zA-Z]+(\/[a-zA-Z0-9-._/~:@!$&'()*+,;=]*$)?/),
+    password: Joi.string().required().min(6),
   }),
 });
 
 const userIdValidation = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().required().length(24).hex(),
+    userId: Joi.string().length(24).hex(),
   }),
 });
 
 const updateUserValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
+    email: Joi.string().required().email(),
   }),
 });
 
-const updateAvatarValidation = celebrate({
-  body: Joi.object().keys({
-    avatar: Joi.string().pattern(/(https|http):\/\/(www.)?[a-zA-Z0-9-_]+\.[a-zA-Z]+(\/[a-zA-Z0-9-._/~:@!$&'()*+,;=]*$)?/),
-  }),
-});
-
-const cardIdValidation = celebrate({
+const movieIdValidation = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().required().length(24).hex(),
+    movieId: Joi.string().length(24).hex(),
   }),
 });
 
-const createCardValidation = celebrate({
+const createMovieValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(/(https|http):\/\/(www.)?[a-zA-Z0-9-_]+\.[a-zA-Z]+(\/[a-zA-Z0-9-._/~:@!$&'()*+,;=]*$)?/),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().custom(validationUrl),
+    trailerLink: Joi.string().required().custom(validationUrl),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    thumbnail: Joi.string().required().custom(validationUrl),
+    movieId: Joi.number().required(),
   }),
 });
 
@@ -54,7 +65,6 @@ module.exports = {
   signInValidation,
   userIdValidation,
   updateUserValidation,
-  updateAvatarValidation,
-  createCardValidation,
-  cardIdValidation,
+  createMovieValidation,
+  movieIdValidation,
 };

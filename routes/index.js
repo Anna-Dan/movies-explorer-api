@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userRouter = require('./users');
-const cardRouter = require('./cards');
+const movieRouter = require('./movies');
 const { login, createUser } = require('../controllers/users');
 const {
   signUpValidation,
@@ -13,7 +13,7 @@ router.post('/signin', signInValidation, login);
 router.post('/signup', signUpValidation, createUser);
 
 router.use(auth);
-router.use(cardRouter);
+router.use(movieRouter);
 router.use(userRouter);
 
 router.use('*', (req, res, next) => {
