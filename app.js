@@ -11,7 +11,7 @@ const limiter = require('./middlewares/limiter');
 const router = require('./routes/index');
 const { developDataBaseUrl } = require('./utils/config');
 
-const { PORT = 3000, NODE_ENV, DATA_BASE_URL } = process.env;
+const { PORT = 3001, NODE_ENV, DATA_BASE_URL } = process.env;
 const app = express();
 
 mongoose.connect(
