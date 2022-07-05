@@ -21,10 +21,6 @@ mongoose.connect(
   },
 );
 
-// mongoose.connect('mongodb://localhost:27017/moviesdb', {
-//   useNewUrlParser: true,
-// });
-
 app.listen(PORT);
 
 app.use(bodyParser.json());
