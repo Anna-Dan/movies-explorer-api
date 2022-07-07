@@ -11,7 +11,6 @@ const {
   USER_NOT_FOUND,
   INVALID_DATA_CREATE_USER,
   EMAIL_ALREADY_EXISTS,
-  PAS_OR_EMAIL_NOT_FOUND,
   INVALID_DATA_UPDATE_PROFILE,
   INVALID_PAS_OR_EMAIL,
 } = require('../utils/constants');
@@ -31,10 +30,6 @@ module.exports.getCurrentUser = (req, res, next) => {
 // POST /signup — создать пользователя
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-
-  if (!email || !password) {
-    return next(new NotFoundError(PAS_OR_EMAIL_NOT_FOUND));
-  }
   return bcrypt
     .hash(password, 10)
     .then((hash) => User.create({
@@ -85,9 +80,6 @@ module.exports.updateUserInfo = (req, res, next) => {
 // /POST/signin - проверка логина и пароля
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    next(new BadRequestError(PAS_OR_EMAIL_NOT_FOUND));
-  }
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(

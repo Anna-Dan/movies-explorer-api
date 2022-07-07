@@ -10,11 +10,8 @@ const SERVER_ERROR = 'Ошибка сервера';
 const INVALID_PAS_OR_EMAIL = 'Неправильные почта или пароль';
 const INVALID_EMAIL = 'Некорректный email';
 const INVALID_URL_FORMAT = 'Некорректный адрес URL.';
-const URL_NOT_FOUND = 'Неправильный адрес запроса';
-const PAS_OR_EMAIL_NOT_FOUND = 'Не переданы email или пароль';
 
 module.exports = {
-  URL_NOT_FOUND,
   INVALID_URL_FORMAT,
   INVALID_EMAIL,
   INVALID_PAS_OR_EMAIL,
@@ -27,5 +24,4 @@ module.exports = {
   NOT_FOUND_MOVIE,
   ACCESS_RIGHTS_ERROR,
   INVALID_DATA_CREATE_MOVIE,
-  PAS_OR_EMAIL_NOT_FOUND,
 };
