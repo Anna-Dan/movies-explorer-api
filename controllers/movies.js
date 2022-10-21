@@ -8,12 +8,10 @@ const {
   ACCESS_RIGHTS_ERROR,
 } = require('../utils/constants');
 
-// GET /movies — возвращает все сохранённые текущим  пользователем фильмы
+// GET /movies — возвращает все фильмы
 module.exports.getMovies = (req, res, next) => {
   Movie.find({})
-    .then((movies) => res.send(
-      movies.filter((movie) => movie.owner.toString() === req.user._id),
-    ))
+    .then((movies) => res.send(movies))
     .catch(next);
 };
 
@@ -48,7 +46,7 @@ module.exports.createMovie = (req, res, next) => {
     movieId,
   })
     .then((newMovie) => {
-      res.send({ newMovie });
+      res.send(newMovie);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -60,7 +58,7 @@ module.exports.createMovie = (req, res, next) => {
 
 // DELETE /movies/:movieId  — удаляет сохранённый фильм по id
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params._id)
     .orFail(() => {
       throw new NotFoundError(NOT_FOUND_MOVIE);
     })

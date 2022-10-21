@@ -1,4 +1,8 @@
-const allowedCors = ['http://localhost:3000'];
+const allowedCors = [
+  'http://localhost:3000',
+  'https://diploma.danilenkoad.nomoredomains.sbs',
+  'http://diploma.danilenkoad.nomoredomains.sbs',
+];
 
 const cors = (req, res, next) => {
   const { origin } = req.headers;

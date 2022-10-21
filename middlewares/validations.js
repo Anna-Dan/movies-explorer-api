@@ -40,7 +40,7 @@ const updateUserValidation = celebrate({
 
 const movieIdValidation = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().length(24).hex(),
+    _id: Joi.string().length(24).hex(),
   }),
 });
 
@@ -57,6 +57,7 @@ const createMovieValidation = celebrate({
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().custom(validationUrl),
     movieId: Joi.number().required(),
+    isLiked: Joi.boolean(),
   }),
 });
 
